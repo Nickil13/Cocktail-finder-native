@@ -2,16 +2,16 @@ import React from "react";
 import { Text } from "react-native";
 import { useFonts } from "expo-font";
 
-export default function HeaderText(props) {
+export default function MontText(props) {
     const [fontsLoaded] = useFonts({
-        primary: require("../assets/fonts/BebasNeue-Regular.ttf"),
+        "montserrat-regular": require("../assets/fonts/Montserrat-Regular.ttf"),
     });
 
     if (!fontsLoaded) {
         return null;
     }
     return (
-        <Text style={[{ fontFamily: "primary" }, props.style]}>
+        <Text style={[{ fontFamily: "montserrat-regular" }, props.style]}>
             {props.children}
         </Text>
     );
