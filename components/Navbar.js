@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import HeaderText from "./BebasText";
-import { Colors } from "../assets/Colors";
+import { Colors } from "../theme/Colors";
 
 export default function Navbar() {
     return (

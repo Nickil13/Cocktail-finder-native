@@ -12,7 +12,7 @@ import {
 import Navbar from "../components/Navbar";
 import MontText from "../components/MontText";
 import Button from "../components/Button";
-import { Colors } from "../assets/Colors";
+import { Colors } from "../theme/Colors";
 import InputField from "../components/InputField";
 const bgImage = require("../assets/images/home_bg.jpg");
 
