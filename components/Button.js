@@ -2,7 +2,7 @@ import React from "react";
 import { Pressable, StyleSheet } from "react-native";
 import MontText from "./MontText";
 
-export default function Button({ title, onPress, color, padding }) {
+export default function Button({ title, onPress, color, textColor, padding }) {
     return (
         <Pressable
             onPress={onPress}
@@ -15,7 +15,7 @@ export default function Button({ title, onPress, color, padding }) {
                 styles.wrapperCustom,
             ]}
         >
-            <MontText>{title}</MontText>
+            <MontText style={{ color: textColor }}>{title}</MontText>
         </Pressable>
     );
 }

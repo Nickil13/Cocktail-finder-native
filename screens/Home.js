@@ -8,12 +8,15 @@ import {
     FlatList,
     TouchableOpacity,
     ImageBackground,
+    Pressable,
 } from "react-native";
 import Navbar from "../components/Navbar";
 import MontText from "../components/MontText";
 import Button from "../components/Button";
-import { Colors } from "../theme/Colors";
+import { Colors } from "../styles/Colors";
 import InputField from "../components/InputField";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useTheme } from "@react-navigation/native";
 const bgImage = require("../assets/images/home_bg.jpg");
 
 export default function Home() {
@@ -25,7 +28,7 @@ export default function Home() {
     ]);
     const [currentTab, setCurrentTab] = useState("By Name");
     const [value, onChangeValue] = useState("");
-
+    const { colors } = useTheme();
     const clickHandler = () => {
         setValue("cat");
     };
@@ -37,8 +40,9 @@ export default function Home() {
         });
     };
     return (
-        <View style={styles.main}>
+        <SafeAreaView style={styles.main}>
             <Navbar />
+
             <ImageBackground
                 source={bgImage}
                 resizeMode="cover"
@@ -78,8 +82,13 @@ export default function Home() {
                                 title="By Name"
                                 color={
                                     currentTab === "By Name"
-                                        ? Colors.primary
+                                        ? colors.primary
                                         : "white"
+                                }
+                                textColor={
+                                    currentTab === "By Name"
+                                        ? "white"
+                                        : colors.primary
                                 }
                                 onPress={() => setCurrentTab("By Name")}
                             />
@@ -87,8 +96,13 @@ export default function Home() {
                                 title="By Ingredient"
                                 color={
                                     currentTab === "By Ingredient"
-                                        ? Colors.primary
+                                        ? colors.primary
                                         : "white"
+                                }
+                                textColor={
+                                    currentTab === "By Ingredient"
+                                        ? "white"
+                                        : colors.primary
                                 }
                                 onPress={() => setCurrentTab("By Ingredient")}
                             />
@@ -124,7 +138,7 @@ export default function Home() {
                     ]}
                 ></View>
             </ImageBackground>
-        </View>
+        </SafeAreaView>
     );
 }
 

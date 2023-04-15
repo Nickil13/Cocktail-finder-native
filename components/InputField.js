@@ -1,6 +1,6 @@
 import React from "react";
 import { TextInput, View, StyleSheet } from "react-native";
-import { Colors } from "../theme/Colors";
+import { Colors } from "../styles/Colors";
 import { useFonts } from "expo-font";
 import MontText from "./MontText";
 
