@@ -1,48 +1,24 @@
 import React, { useState } from "react";
-import {
-    StyleSheet,
-    Text,
-    View,
-    Image,
-    TextInput,
-    FlatList,
-    TouchableOpacity,
-    ImageBackground,
-    Pressable,
-} from "react-native";
-import Navbar from "../components/Navbar";
+import { StyleSheet, View, ImageBackground } from "react-native";
+
 import MontText from "../components/MontText";
-import Button from "../components/Button";
-import { Colors } from "../styles/Colors";
-import InputField from "../components/InputField";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useTheme } from "@react-navigation/native";
+import Button from "../components/Button";
+import InputField from "../components/InputField";
+import { globalStyles } from "../styles/globalStyles";
+import OpenURLButton from "../components/OpenURLButton";
+
 const bgImage = require("../assets/images/home_bg.jpg");
 
-export default function Home() {
-    const [cocktails, setCocktails] = useState([
-        { name: "margarita", id: "1" },
-        { name: "bellini", id: "2" },
-        { name: "vodka cranberry", id: "3" },
-        { name: "mojito", id: "4" },
-    ]);
+export default function Home({ navigation }) {
     const [currentTab, setCurrentTab] = useState("By Name");
     const [value, onChangeValue] = useState("");
     const { colors } = useTheme();
-    const clickHandler = () => {
-        setValue("cat");
-    };
 
-    const pressHandler = (id) => {
-        console.log(id);
-        setCocktails((prevCocktails) => {
-            return prevCocktails.filter((cocktail) => cocktail.id != id);
-        });
-    };
     return (
-        <SafeAreaView style={styles.main}>
-            <Navbar />
-
+        <SafeAreaView style={{ flex: 1 }}>
+            {/* <Navbar /> */}
             <ImageBackground
                 source={bgImage}
                 resizeMode="cover"
@@ -114,29 +90,23 @@ export default function Home() {
                         value={value}
                         placeholder="Cocktail name"
                     />
+                    <Button
+                        title="To results
+                    "
+                        onPress={() => navigation.navigate("Search Results")}
+                    />
+                    <OpenURLButton
+                        url="https://my-cocktail-finder.netlify.app/"
+                        title="Go to the Cocktail Finder website"
+                        styleText={{
+                            color: "white",
+                            textAlign: "center",
+                            fontSize: 14,
+                        }}
+                    />
                 </View>
-                {/* <Image source={PlaceholderImage} style={styles.image} /> */}
-                {/* <FlatList
-                keyExtractor={(item) => item.id}
-                data={cocktails}
-                renderItem={({ item }) => (
-                    <TouchableOpacity onPress={() => pressHandler(item.id)}>
-                        <Text>{item.name}</Text>
-                    </TouchableOpacity>
-                )}
-            /> */}
-                <View
-                    style={[
-                        {
-                            position: "absolute",
-                            backgroundColor: "rgba(0,0,0,0.5)",
-                            top: 0,
-                            left: 0,
-                            right: 0,
-                            bottom: 0,
-                        },
-                    ]}
-                ></View>
+
+                <View style={globalStyles.overlay}></View>
             </ImageBackground>
         </SafeAreaView>
     );
@@ -144,34 +114,20 @@ export default function Home() {
 
 const styles = StyleSheet.create({
     main: {
-        position: "relative",
         flex: 1,
-        backgroundColor: "#fff",
-        alignItems: "center",
-        justifyContent: "center",
     },
     container: {
-        display: "flex",
         justifyContent: "center",
-        width: "90%",
+        width: "80%",
         maxWidth: 520,
         zIndex: 5,
-    },
-    imageContainer: {
-        flex: 1,
-        paddingTop: 58,
+        marginTop: 100,
     },
     imageBackground: {
         position: "relative",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
+        //justifyContent: "center",
         alignItems: "center",
-        width: "100%",
         height: "100%",
-        // width: 320,
-        // height: 440,
-        // borderRadius: 18,
     },
     buttonContainer: {
         marginVertical: 20,

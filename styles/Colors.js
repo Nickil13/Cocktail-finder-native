@@ -4,8 +4,10 @@ export const Colors = {
 
     // Accents
     accentPink100: "rgb(249,168,212)",
-    accentPink200: "rgb(229,231,235)",
-    accentBlue: "rgb(99,102,241)",
+    accentPink200: "rgb(244,114,182)",
+    accentBlue50: "rgb(199,210,254)",
+    accentBlue100: "rgb(165,180,252)",
+    accentBlue200: "rgb(99,102,241)",
 
     grey: "rgba(156,163,175)",
     darkGrey: "rgb(75,85,99)",

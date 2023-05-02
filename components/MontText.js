@@ -11,7 +11,12 @@ export default function MontText(props) {
         return null;
     }
     return (
-        <Text style={[{ fontFamily: "montserrat-regular" }, props.style]}>
+        <Text
+            style={[
+                { fontFamily: "montserrat-regular", fontSize: 16 },
+                props.style,
+            ]}
+        >
             {props.children}
         </Text>
     );

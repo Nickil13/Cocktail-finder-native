@@ -1,16 +1,22 @@
 import React from "react";
 import { StyleSheet, View, Pressable } from "react-native";
 import HeaderText from "./BebasText";
-import { Colors } from "../styles/Colors";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useThemeContext } from "../context/ThemeContext";
 import { useTheme } from "@react-navigation/native";
+import { globalStyles } from "../styles/globalStyles";
 
 export default function Navbar() {
     const { toggleTheme, theme } = useThemeContext();
     const { colors } = useTheme();
     return (
-        <View style={[styles.navbar, { backgroundColor: colors.background }]}>
+        <View
+            style={[
+                styles.navbar,
+                { backgroundColor: colors.background },
+                globalStyles.shadow,
+            ]}
+        >
             <View style={styles.navbarContainer}>
                 <HeaderText style={[styles.title, { color: colors.primary }]}>
                     Cocktail Finder
@@ -39,13 +45,7 @@ export default function Navbar() {
 
 const styles = StyleSheet.create({
     navbar: {
-        height: 80,
-        width: "100%",
         padding: 16,
-        position: "absolute",
-        top: 0,
-        right: 0,
-        zIndex: 10,
     },
     navbarContainer: {
         maxWidth: 1000,

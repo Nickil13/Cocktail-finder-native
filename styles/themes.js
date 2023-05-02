@@ -6,7 +6,7 @@ export const MyLightTheme = {
     colors: {
         ...DefaultTheme.colors,
         background: "white",
-        primary: Colors.accentBlue,
+        primary: Colors.accentBlue200,
     },
 };
 export const MyDarkTheme = {
