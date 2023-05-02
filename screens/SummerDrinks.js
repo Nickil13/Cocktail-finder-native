@@ -1,14 +1,12 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
     View,
     ImageBackground,
     StyleSheet,
     ScrollView,
     Dimensions,
-    Image,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Navbar from "../components/Navbar";
 import MontText from "../components/MontText";
 import Button from "../components/Button";
 import { globalStyles } from "../styles/globalStyles";
@@ -34,10 +32,63 @@ const summerLinks = [
 export default function SummerDrinks() {
     const windowHeight = Dimensions.get("window").height;
     const { colors } = useTheme();
+    const scroller = useRef(null);
+    const margaritaRef = useRef(null);
+    const mojitoRef = useRef(null);
+    const [position, setPosition] = useState(0);
+    useEffect(() => {
+        // if (scroller?.current) {
+        //     scroller.current.scrollTo({ y: 100 });
+        // }
+    }, []);
+
+    const handleClick = (name) => {
+        const NAV_HEIGHT = 100;
+        let ref = null;
+        switch (name) {
+            case "Margarita":
+                ref = margaritaRef;
+                break;
+            case "Mojito":
+                ref = mojitoRef;
+                break;
+            default:
+        }
+
+        if (ref) handleScrollTo(ref, NAV_HEIGHT);
+    };
+
+    const handleScrollTo = (ref, start) => {
+        if (ref?.current) {
+            ref.current.measure((width, height, px, py, fx, fy) => {
+                const location = {
+                    fx: fx,
+                    fy: fy,
+                    px: px,
+                    py: py,
+                    width: width,
+                    height: height,
+                };
+                if (scroller?.current) {
+                    scroller.current.scrollTo({
+                        y: position + location.fy - start,
+                    });
+                }
+            });
+        }
+    };
+
+    const onScroll = (event) => {
+        setPosition(event.nativeEvent.contentOffset.y);
+    };
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }}>
             {/* <Navbar /> */}
-            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+            <ScrollView
+                contentContainerStyle={{ flexGrow: 1 }}
+                ref={scroller}
+                onScroll={onScroll}
+            >
                 <ImageBackground
                     source={bgImage}
                     resizeMode="cover"
@@ -61,7 +112,7 @@ export default function SummerDrinks() {
                                         title={link.name}
                                         textColor="white"
                                         color={Colors.accentPink200}
-                                        onPress={() => console.log(link.name)}
+                                        onPress={() => handleClick(link.name)}
                                     />
                                 );
                             })}
@@ -70,8 +121,9 @@ export default function SummerDrinks() {
 
                     <View style={globalStyles.overlay}></View>
                 </ImageBackground>
-                <View style={{ padding: 40, gap: 40 }}>
+                <View style={{ padding: 40, gap: 60 }}>
                     <Section
+                        ref={margaritaRef}
                         title="Margarita"
                         description="Nothing is better than relaxing at the beach with a margarita! Tequila, lime, liqueur and a rim of salt"
                         recipes={[
@@ -82,7 +134,19 @@ export default function SummerDrinks() {
                         ]}
                     />
                     <Section
+                        ref={mojitoRef}
                         title="Mojito"
+                        description="A Cuban cocktail made with lime and rum and a sprig of fresh mint."
+                        image={mojitoImage}
+                        recipes={[
+                            "Mojito",
+                            "Mojito Extra",
+                            "Mango Mojito",
+                            "Blueberry Mojito",
+                        ]}
+                    />
+                    <Section
+                        title="Spritz"
                         description="A Cuban cocktail made with lime and rum and a sprig of fresh mint."
                         image={mojitoImage}
                         recipes={[

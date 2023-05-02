@@ -22,7 +22,7 @@ const Main = () => {
                 name="Home"
                 component={Home}
                 options={{
-                    headerShown: false,
+                    header: () => <Navbar />,
                     tabBarLabel: "Search",
                     tabBarIcon: ({ color }) => (
                         <Ionicons name="md-search" size={24} color={color} />
@@ -61,7 +61,7 @@ export default function RootStackNavigator() {
                     name="Main"
                     component={Main}
                     options={{
-                        header: () => <Navbar />,
+                        headerShown: false,
                         tabBarLabel: "Search",
                         tabBarIcon: ({ color }) => (
                             <Ionicons

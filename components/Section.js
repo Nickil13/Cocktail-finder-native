@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { View, Image } from "react-native";
 
 import MontText from "../components/MontText";
@@ -9,14 +9,29 @@ const defaultImage = {
     uri: "https://images.unsplash.com/photo-1601925088924-aad72e86b894?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=776&q=80",
 };
 
-const Section = ({ title, description, recipes, image }) => {
+const Section = forwardRef(function Section(
+    { title, description, recipes, image },
+    ref
+) {
     return (
-        <View style={{ gap: 20 }}>
+        <View style={{ gap: 40 }} ref={ref}>
             <View style={{ backgroundColor: Colors.accentPink100 }}>
-                <Image
-                    source={image || defaultImage}
-                    style={{ width: "100%", aspectRatio: 1, maxHeight: 200 }}
-                />
+                <View
+                    style={{
+                        width: "100%",
+                        maxHeight: 200,
+                        overflow: "hidden",
+                    }}
+                >
+                    <Image
+                        source={image || defaultImage}
+                        style={{
+                            width: "100%",
+                            height: "100%",
+                        }}
+                        resizeMode="cover"
+                    />
+                </View>
                 <BebasText style={{ fontSize: 48, textAlign: "center" }}>
                     {title}
                 </BebasText>
@@ -58,6 +73,6 @@ const Section = ({ title, description, recipes, image }) => {
             </View>
         </View>
     );
-};
+});
 
 export default Section;

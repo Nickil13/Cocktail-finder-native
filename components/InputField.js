@@ -10,6 +10,7 @@ export default function InputField({
     placeholder,
     label,
     type,
+    onSubmit,
 }) {
     const [loaded] = useFonts({
         "montserrat-regular": require("../assets/fonts/Montserrat-Regular.ttf"),
@@ -30,6 +31,7 @@ export default function InputField({
                 value={value}
                 secureTextEntry={type === "password"}
                 placeholder={placeholder}
+                onSubmitEditing={onSubmit}
             />
         </View>
     );
