@@ -16,7 +16,12 @@ import Button from "../components/Button";
 import InputField from "../components/InputField";
 import { globalStyles } from "../styles/globalStyles";
 import OpenURLButton from "../components/OpenURLButton";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import {
+    clearRecentSearches,
+    getRecentSearches,
+    storeRecentSearches,
+} from "../api/recentSearches";
+import WEB_URL from "../utils/variables";
 const bgImage = require("../assets/images/home_bg.jpg");
 
 export default function Home({ navigation }) {
@@ -24,45 +29,10 @@ export default function Home({ navigation }) {
     const [value, onChangeValue] = useState("");
     const { colors } = useTheme();
 
-    const storeRecentSearches = async (value) => {
-        const previousSearches = await getRecentSearches().then((res) => {
-            return res;
-        });
-
-        try {
-            const initialSearches = previousSearches?.length > 0 || [];
-            const recentSearches = [...initialSearches, value];
-
-            const jsonValue = JSON.stringify(recentSearches);
-            await AsyncStorage.setItem("@storage_Key", jsonValue);
-        } catch (e) {
-            // saving error
-            console.error("There was an error saving recent searches.");
-        }
-    };
-
-    const getRecentSearches = async () => {
-        try {
-            const jsonValue = await AsyncStorage.getItem("@storage_Key");
-            return jsonValue != null ? JSON.parse(jsonValue) : null;
-        } catch (e) {
-            // error reading value
-            console.error("There was an error loading recent searches.");
-        }
-    };
-
     const onSubmit = () => {
         navigation.navigate("Search Results");
         storeRecentSearches(value);
         console.log();
-    };
-
-    const clearRecentSearches = async () => {
-        try {
-            await AsyncStorage.clear();
-        } catch (e) {
-            // clear error
-        }
     };
 
     return (
@@ -149,7 +119,6 @@ export default function Home({ navigation }) {
                         </View>
                         <KeyboardAvoidingView>
                             <InputField
-                                label=""
                                 onChangeText={onChangeValue}
                                 value={value}
                                 placeholder="Cocktail name"
@@ -158,7 +127,7 @@ export default function Home({ navigation }) {
                         </KeyboardAvoidingView>
 
                         <OpenURLButton
-                            url="https://my-cocktail-finder.netlify.app/"
+                            url={WEB_URL}
                             title="Go to the Cocktail Finder website"
                             styleText={{
                                 color: "white",

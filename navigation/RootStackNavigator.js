@@ -29,7 +29,17 @@ const Main = () => {
                     ),
                 }}
             />
-            <MainStack.Screen name="Search Results" component={SearchResults} />
+            <MainStack.Screen
+                name="Search Results"
+                component={SearchResults}
+                options={{
+                    header: () => <Navbar />,
+                    tabBarLabel: "Search",
+                    tabBarIcon: ({ color }) => (
+                        <Ionicons name="md-search" size={24} color={color} />
+                    ),
+                }}
+            />
         </MainStack.Navigator>
     );
 };
@@ -46,7 +56,7 @@ export default function RootStackNavigator() {
                 translucent={false}
             />
             <Tab.Navigator
-                initialRouteName="Summer Drinks"
+                initialRouteName="Main"
                 screenOptions={{
                     tabBarStyle: {
                         backgroundColor:
