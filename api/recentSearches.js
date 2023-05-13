@@ -7,13 +7,14 @@ const storeRecentSearches = async (value) => {
 
     try {
         const initialSearches = previousSearches?.length > 0 || [];
-        const recentSearches = [...initialSearches, value];
+        const recentSearches =
+            initialSearches?.length > 0 ? [...initialSearches, value] : [value];
 
         const jsonValue = JSON.stringify(recentSearches);
         await AsyncStorage.setItem("@storage_Key", jsonValue);
     } catch (e) {
         // saving error
-        console.error("There was an error saving recent searches.");
+        console.error("There was an error saving recent searches.", e);
     }
 };
 
@@ -23,7 +24,7 @@ const getRecentSearches = async () => {
         return jsonValue != null ? JSON.parse(jsonValue) : null;
     } catch (e) {
         // error reading value
-        console.error("There was an error loading recent searches.");
+        console.error("There was an error loading recent searches.", e);
     }
 };
 const clearRecentSearches = async () => {

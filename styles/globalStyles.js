@@ -16,6 +16,15 @@ const globalStyles = StyleSheet.create({
         right: 0,
         bottom: 0,
     },
+    heroContainer: {
+        justifyContent: "center",
+        width: "80%",
+        maxWidth: 520,
+    },
+    container: {
+        gap: 20,
+        padding: 20,
+    },
 });
 
 export { globalStyles };

@@ -22,9 +22,11 @@ export default function InputField({
 
     return (
         <View style={styles.inputControl}>
-            <MontText style={styles.label} weight="medium">
-                {label}
-            </MontText>
+            {label && (
+                <MontText style={styles.label} weight="medium">
+                    {label}
+                </MontText>
+            )}
             <TextInput
                 style={styles.input}
                 onChangeText={onChangeText}
