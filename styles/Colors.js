@@ -9,6 +9,9 @@ export const Colors = {
     accentBlue100: "rgb(165,180,252)",
     accentBlue200: "rgb(99,102,241)",
 
-    grey: "rgba(156,163,175)",
+    grey: "rgb(156,163,175)",
     darkGrey: "rgb(75,85,99)",
+    extraDarkGrey: "rgb(31,41,55)",
+
+    white: "#fff",
 };

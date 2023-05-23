@@ -13,7 +13,7 @@ export default function Navbar() {
         <View
             style={[
                 styles.navbar,
-                { backgroundColor: colors.background },
+                { backgroundColor: colors.nav },
                 globalStyles.shadow,
             ]}
         >

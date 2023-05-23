@@ -5,15 +5,19 @@ export const MyLightTheme = {
     ...DefaultTheme,
     colors: {
         ...DefaultTheme.colors,
-        background: "white",
+        background: Colors.white,
+        nav: Colors.white,
         primary: Colors.accentBlue200,
+        text: Colors.darkGrey,
     },
 };
 export const MyDarkTheme = {
     ...DarkTheme,
     colors: {
         ...DarkTheme.colors,
-        background: Colors.darkGrey,
+        background: Colors.extraDarkGrey,
+        nav: Colors.darkGrey,
         primary: Colors.primary,
+        text: Colors.grey,
     },
 };

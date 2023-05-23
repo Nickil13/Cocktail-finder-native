@@ -2,15 +2,20 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StatusBar } from "expo-status-bar";
-import Home from "../screens/Home";
-import SummerDrinks from "../screens/SummerDrinks";
+
 import { useThemeContext } from "../context/ThemeContext";
 import { MyDarkTheme, MyLightTheme } from "../styles/themes";
 import { Colors } from "../styles/Colors";
 import { Entypo, Ionicons } from "@expo/vector-icons";
-import SearchResults from "../screens/SearchResults";
+
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Navbar from "../components/Navbar";
+
+// Screens
+import Home from "../screens/Home";
+import SummerDrinks from "../screens/SummerDrinks";
+import SearchResults from "../screens/SearchResults";
+import CocktailDetails from "../screens/CocktailDetails";
 
 const Tab = createBottomTabNavigator();
 const MainStack = createNativeStackNavigator();
@@ -23,10 +28,6 @@ const Main = () => {
                 component={Home}
                 options={{
                     header: () => <Navbar />,
-                    tabBarLabel: "Search",
-                    tabBarIcon: ({ color }) => (
-                        <Ionicons name="md-search" size={24} color={color} />
-                    ),
                 }}
             />
             <MainStack.Screen
@@ -34,10 +35,13 @@ const Main = () => {
                 component={SearchResults}
                 options={{
                     header: () => <Navbar />,
-                    tabBarLabel: "Search",
-                    tabBarIcon: ({ color }) => (
-                        <Ionicons name="md-search" size={24} color={color} />
-                    ),
+                }}
+            />
+            <MainStack.Screen
+                name="Cocktail Details"
+                component={CocktailDetails}
+                options={{
+                    header: () => <Navbar />,
                 }}
             />
         </MainStack.Navigator>
@@ -52,7 +56,9 @@ export default function RootStackNavigator() {
         >
             <StatusBar
                 style={theme === "light" ? "auto" : "light"}
-                backgroundColor={theme === "light" ? "white" : Colors.darkGrey}
+                backgroundColor={
+                    theme === "light" ? Colors.white : Colors.darkGrey
+                }
                 translucent={false}
             />
             <Tab.Navigator
@@ -60,7 +66,7 @@ export default function RootStackNavigator() {
                 screenOptions={{
                     tabBarStyle: {
                         backgroundColor:
-                            theme === "light" ? "white" : Colors.darkGrey,
+                            theme === "light" ? Colors.white : Colors.darkGrey,
                         padding: 10,
                         paddingBottom: 10,
                         height: 60,

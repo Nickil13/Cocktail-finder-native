@@ -16,6 +16,7 @@ import { globalStyles } from "../styles/globalStyles";
 import OpenURLButton from "../components/OpenURLButton";
 import { storeRecentSearches } from "../api/recentSearches";
 import { WEB_URL } from "../utils/variables";
+import { Colors } from "../styles/Colors";
 const bgImage = require("../assets/images/home_bg.jpg");
 
 export default function Home({ navigation }) {
@@ -26,6 +27,7 @@ export default function Home({ navigation }) {
     const onSubmit = () => {
         navigation.navigate("Search Results", { value });
         storeRecentSearches(value);
+        onChangeValue("");
     };
 
     return (
@@ -81,12 +83,12 @@ export default function Home({ navigation }) {
                                 title="By Name"
                                 color={
                                     currentTab === "By Name"
-                                        ? colors.primary
-                                        : "white"
+                                        ? Colors.accentBlue200
+                                        : Colors.accentBlue100
                                 }
                                 textColor={
                                     currentTab === "By Name"
-                                        ? "white"
+                                        ? Colors.white
                                         : colors.primary
                                 }
                                 onPress={() => setCurrentTab("By Name")}
@@ -95,12 +97,12 @@ export default function Home({ navigation }) {
                                 title="By Ingredient"
                                 color={
                                     currentTab === "By Ingredient"
-                                        ? colors.primary
-                                        : "white"
+                                        ? Colors.accentBlue200
+                                        : Colors.accentBlue100
                                 }
                                 textColor={
                                     currentTab === "By Ingredient"
-                                        ? "white"
+                                        ? Colors.white
                                         : colors.primary
                                 }
                                 onPress={() => setCurrentTab("By Ingredient")}

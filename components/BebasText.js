@@ -11,7 +11,10 @@ export default function BebasText(props) {
         return null;
     }
     return (
-        <Text style={[{ fontFamily: "bebasneue-regular" }, props.style]}>
+        <Text
+            style={[{ fontFamily: "bebasneue-regular" }, props.style]}
+            numberOfLines={props.numberOfLines}
+        >
             {props.children}
         </Text>
     );
