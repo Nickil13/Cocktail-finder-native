@@ -1,6 +1,7 @@
 import {
     SEARCH_COCKTAIL,
     SEARCH_COCKTAIL_BY_ID,
+    SEARCH_COCKTAIL_BY_INGREDIENT,
     SEARCH_INGREDIENT,
 } from "./routes";
 
@@ -18,7 +19,9 @@ const getCocktails = async (value) => {
 const getCocktailsByIngredient = async (value) => {
     // Check to see if ingredient exists. Then, use ingredient to search for drinks
     try {
-        const response = await fetch(`${SEARCH_INGREDIENT}${value}`);
+        const response = await fetch(
+            `${SEARCH_COCKTAIL_BY_INGREDIENT}${value}`
+        );
         const data = await response.json();
         const { drinks } = data;
         return drinks;
