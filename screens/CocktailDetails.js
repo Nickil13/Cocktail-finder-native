@@ -41,13 +41,7 @@ export default function CocktailDetails({ route }) {
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <Pressable
-                style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    zIndex: 2,
-                }}
+                style={styles.bannerContainer}
                 onPress={() => setShowBanner(!showBanner)}
             >
                 {showBanner ? (
@@ -61,7 +55,7 @@ export default function CocktailDetails({ route }) {
                     <Ionicons
                         name="help-circle-outline"
                         size={32}
-                        style={{ paddingHorizontal: 6, paddingVertical: 10 }}
+                        style={styles.helpCircle}
                         color={Colors.accentBlue200}
                     />
                 )}
@@ -81,15 +75,7 @@ export default function CocktailDetails({ route }) {
                     />
                 </View>
                 <View style={{ gap: 20 }}>
-                    <BebasText
-                        style={{
-                            fontSize: 48,
-                            color: Colors.accentBlue200,
-                            textAlign: "center",
-                        }}
-                    >
-                        {cocktail?.name}
-                    </BebasText>
+                    <BebasText style={styles.title}>{cocktail?.name}</BebasText>
                     <View
                         style={{
                             flex: 1,
@@ -114,8 +100,7 @@ export default function CocktailDetails({ route }) {
                                                 style={{ fontWeight: "bold" }}
                                             >
                                                 {ingredient.measurement}
-                                            </MontText>
-
+                                            </MontText>{" "}
                                             {ingredient.name}
                                         </MontText>
                                     </Pressable>
@@ -140,6 +125,18 @@ export default function CocktailDetails({ route }) {
 }
 
 const styles = StyleSheet.create({
+    title: {
+        fontSize: 48,
+        color: Colors.accentBlue200,
+        textAlign: "center",
+    },
+    bannerContainer: {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        zIndex: 2,
+    },
     banner: {
         paddingHorizontal: 6,
         paddingVertical: 10,
@@ -153,4 +150,14 @@ const styles = StyleSheet.create({
         maxHeight: 30,
     },
     thumb: { height: "100%", width: "100%" },
+    helpCircle: {
+        paddingHorizontal: 6,
+        paddingLeft: 8,
+        paddingVertical: 10,
+        marginLeft: 6,
+        backgroundColor: Colors.white,
+        width: 50,
+        height: 50,
+        borderRadius: 40,
+    },
 });

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import {
     View,
     ImageBackground,
@@ -13,13 +13,6 @@ import { globalStyles } from "../styles/globalStyles";
 import { useTheme } from "@react-navigation/native";
 import { Colors } from "../styles/Colors";
 import Section from "../components/Section";
-const bgImage = {
-    uri: "https://images.unsplash.com/photo-1601925088924-aad72e86b894?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=776&q=80",
-};
-
-const mojitoImage = {
-    uri: "https://images.unsplash.com/photo-1568608275764-7a16d7fdfc56?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=689&q=80",
-};
 
 const summerLinks = [
     { name: "Margarita" },
@@ -29,18 +22,19 @@ const summerLinks = [
     { name: "Daiquiri" },
     { name: "Piña Colada" },
 ];
+
+const bgImage = require("../assets/images/summerCocktails.jpg");
 export default function SummerDrinks() {
     const windowHeight = Dimensions.get("window").height;
     const { colors } = useTheme();
     const scroller = useRef(null);
     const margaritaRef = useRef(null);
     const mojitoRef = useRef(null);
+    const spritzRef = useRef(null);
+    const sangriaRef = useRef(null);
+    const daiquiriRef = useRef(null);
+    const pinaColadaRef = useRef(null);
     const [position, setPosition] = useState(0);
-    useEffect(() => {
-        // if (scroller?.current) {
-        //     scroller.current.scrollTo({ y: 100 });
-        // }
-    }, []);
 
     const handleClick = (name) => {
         const NAV_HEIGHT = 100;
@@ -51,6 +45,18 @@ export default function SummerDrinks() {
                 break;
             case "Mojito":
                 ref = mojitoRef;
+                break;
+            case "Spritz":
+                ref = spritzRef;
+                break;
+            case "Sangria":
+                ref = sangriaRef;
+                break;
+            case "Daiquiri":
+                ref = daiquiriRef;
+                break;
+            case "Piña Colada":
+                ref = pinaColadaRef;
                 break;
             default:
         }
@@ -83,7 +89,6 @@ export default function SummerDrinks() {
     };
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }}>
-            {/* <Navbar /> */}
             <ScrollView
                 contentContainerStyle={{ flexGrow: 1 }}
                 ref={scroller}
@@ -126,6 +131,7 @@ export default function SummerDrinks() {
                         ref={margaritaRef}
                         title="Margarita"
                         description="Nothing is better than relaxing at the beach with a margarita! Tequila, lime, liqueur and a rim of salt"
+                        image={require("../assets/images/margarita.jpg")}
                         recipes={[
                             "Margarita",
                             "Blue Margarita",
@@ -137,7 +143,7 @@ export default function SummerDrinks() {
                         ref={mojitoRef}
                         title="Mojito"
                         description="A Cuban cocktail made with lime and rum and a sprig of fresh mint."
-                        image={mojitoImage}
+                        image={require("../assets/images/mojito.jpg")}
                         recipes={[
                             "Mojito",
                             "Mojito Extra",
@@ -146,9 +152,47 @@ export default function SummerDrinks() {
                         ]}
                     />
                     <Section
+                        ref={spritzRef}
                         title="Spritz"
-                        description="A Cuban cocktail made with lime and rum and a sprig of fresh mint."
-                        image={mojitoImage}
+                        description="A cocktail made from sparkling wine and soda, with many fantastic variations! A Spritzer is similar, just made with regular wine."
+                        image={require("../assets/images/spritz.jpg")}
+                        recipes={[
+                            "Mojito",
+                            "Mojito Extra",
+                            "Mango Mojito",
+                            "Blueberry Mojito",
+                        ]}
+                    />
+
+                    <Section
+                        ref={sangriaRef}
+                        title="Sangria"
+                        description="Wine, usually red or white, mixed with fruit and fruit juices."
+                        image={require("../assets/images/sangria.jpg")}
+                        recipes={[
+                            "Mojito",
+                            "Mojito Extra",
+                            "Mango Mojito",
+                            "Blueberry Mojito",
+                        ]}
+                    />
+                    <Section
+                        ref={daiquiriRef}
+                        title="Daiquiri"
+                        description="A rum cocktail, lime and sugar! One popular version is the strawberry daiquiri."
+                        image={require("../assets/images/daiquiri.jpeg")}
+                        recipes={[
+                            "Mojito",
+                            "Mojito Extra",
+                            "Mango Mojito",
+                            "Blueberry Mojito",
+                        ]}
+                    />
+                    <Section
+                        ref={pinaColadaRef}
+                        title="Piña Colada"
+                        description="Pineapple, lime, coconut and rum mixed together perfectly. Garnish with an umbrella or maraschino cherries."
+                        image={require("../assets/images/piña-colada.jpg")}
                         recipes={[
                             "Mojito",
                             "Mojito Extra",
@@ -193,7 +237,6 @@ const styles = StyleSheet.create({
     imageBackground: {
         position: "relative",
         flexDirection: "column",
-        //justifyContent: "center",
         alignItems: "center",
     },
 });

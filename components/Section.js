@@ -5,10 +5,6 @@ import MontText from "../components/MontText";
 import BebasText from "../components/BebasText";
 import { Colors } from "../styles/Colors";
 
-const defaultImage = {
-    uri: "https://images.unsplash.com/photo-1601925088924-aad72e86b894?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=776&q=80",
-};
-
 const Section = forwardRef(function Section(
     { title, description, recipes, image },
     ref
@@ -24,7 +20,7 @@ const Section = forwardRef(function Section(
                     }}
                 >
                     <Image
-                        source={image || defaultImage}
+                        source={image}
                         style={{
                             width: "100%",
                             height: "100%",
@@ -48,6 +44,7 @@ const Section = forwardRef(function Section(
                 >
                     {title} recipes to try:
                 </MontText>
+
                 <View
                     style={{
                         flexDirection: "row",

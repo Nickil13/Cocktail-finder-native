@@ -2,51 +2,19 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StatusBar } from "expo-status-bar";
-
 import { useThemeContext } from "../context/ThemeContext";
 import { MyDarkTheme, MyLightTheme } from "../styles/themes";
 import { Colors } from "../styles/Colors";
 import { Entypo, Ionicons } from "@expo/vector-icons";
-
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Navbar from "../components/Navbar";
 
 // Screens
-import Home from "../screens/Home";
 import SummerDrinks from "../screens/SummerDrinks";
-import SearchResults from "../screens/SearchResults";
-import CocktailDetails from "../screens/CocktailDetails";
+import { Main as MainStackNavigator } from "./MainStackNavigator";
+import { StyleSheet } from "react-native";
 
 const Tab = createBottomTabNavigator();
-const MainStack = createNativeStackNavigator();
 
-const Main = () => {
-    return (
-        <MainStack.Navigator initialRouteName="Home">
-            <MainStack.Screen
-                name="Home"
-                component={Home}
-                options={{
-                    header: () => <Navbar />,
-                }}
-            />
-            <MainStack.Screen
-                name="Search Results"
-                component={SearchResults}
-                options={{
-                    header: () => <Navbar />,
-                }}
-            />
-            <MainStack.Screen
-                name="Cocktail Details"
-                component={CocktailDetails}
-                options={{
-                    header: () => <Navbar />,
-                }}
-            />
-        </MainStack.Navigator>
-    );
-};
 export default function RootStackNavigator() {
     const { theme } = useThemeContext();
 
@@ -62,20 +30,21 @@ export default function RootStackNavigator() {
                 translucent={false}
             />
             <Tab.Navigator
-                initialRouteName="Main"
                 screenOptions={{
-                    tabBarStyle: {
-                        backgroundColor:
-                            theme === "light" ? Colors.white : Colors.darkGrey,
-                        padding: 10,
-                        paddingBottom: 10,
-                        height: 60,
-                    },
+                    tabBarStyle: [
+                        styles.tabBar,
+                        {
+                            backgroundColor:
+                                theme === "light"
+                                    ? Colors.white
+                                    : Colors.darkGrey,
+                        },
+                    ],
                 }}
             >
                 <Tab.Screen
                     name="Main"
-                    component={Main}
+                    component={MainStackNavigator}
                     options={{
                         headerShown: false,
                         tabBarLabel: "Search",
@@ -103,3 +72,11 @@ export default function RootStackNavigator() {
         </NavigationContainer>
     );
 }
+
+const styles = StyleSheet.create({
+    tabBar: {
+        padding: 10,
+        paddingBottom: 10,
+        height: 60,
+    },
+});
